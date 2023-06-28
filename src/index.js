@@ -1,11 +1,13 @@
 import http from 'http';
+import dotenv from 'dotenv';
 import { getMethod } from './services/get.js';
 import { postMethod } from './services/post.js';
 import { putMethod } from './services/put.js';
 import { deleteMethod } from './services/delete.js';
+dotenv.config();
 
 const host = 'localhost';
-const port = 3000;
+const port = process.env.DEV_PORT;
 
 const listener = (req, res) => {
   res.setHeader('Content-Type', 'application/json');
