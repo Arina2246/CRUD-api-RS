@@ -11,7 +11,7 @@ const getUser = (res, id) => {
     const userToFind = users.filter((user) => user.id === id);
     if (userToFind.length) {
       res.statusCode = 200;
-      res.end(`${userToFind}`);
+      res.end(`${JSON.stringify(userToFind)}`);
     } else {
       res.statusCode = 404;
       res.end(`"message":"No user with ID ${id}"`);
