@@ -1,4 +1,4 @@
-import http from 'http';
+import http, { IncomingMessage, ServerResponse } from 'http';
 import dotenv from 'dotenv';
 import { getMethod } from './services/get.js';
 import { postMethod } from './services/post.js';
@@ -7,9 +7,9 @@ import { deleteMethod } from './services/delete.js';
 dotenv.config();
 
 const host = 'localhost';
-const port = process.env.DEV_PORT;
+const port: number = Number(process.env.DEV_PORT);
 
-const listener = (req, res) => {
+const listener = (req: IncomingMessage, res: ServerResponse) => {
   res.setHeader('Content-Type', 'application/json');
   switch (req.method) {
     case 'GET':

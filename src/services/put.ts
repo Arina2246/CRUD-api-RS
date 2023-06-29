@@ -1,19 +1,21 @@
 import { users } from '../db/db.js';
 import { validate as uuidValidate } from 'uuid';
+import { BodyType } from '../types/types.js';
+import { IncomingMessage, ServerResponse } from 'http';
 
-const updateUser = (req, res, id) => {
+const updateUser = (req: IncomingMessage, res: ServerResponse, id: string) => {
   let body = [];
   req
     .on('data', (chunk) => {
       body.push(chunk);
     })
     .on('end', () => {
-      body = JSON.parse(Buffer.concat(body).toString());
+      const bodyData = JSON.parse(Buffer.concat(body).toString()) as BodyType;
       const userData = {
         id: id,
-        username: body.username,
-        age: body.age,
-        hobbies: body.hobbies,
+        username: bodyData.username,
+        age: bodyData.age,
+        hobbies: bodyData.hobbies,
       };
       let index = users.findIndex((el) => el.id === id);
       users.splice(index, 1, userData);
@@ -22,7 +24,7 @@ const updateUser = (req, res, id) => {
     });
 };
 
-export const putMethod = (req, res) => {
+export const putMethod = (req: IncomingMessage, res: ServerResponse) => {
   if (req.url.slice(0, 7) === '/users/') {
     const id = req.url.slice(7, req.url.length);
     if (uuidValidate(id)) {
@@ -37,5 +39,8 @@ export const putMethod = (req, res) => {
       res.statusCode = 400;
       res.end(`"message":"ID ${id} is invalid"`);
     }
+  } else {
+    res.statusCode = 404;
+    res.end(`"message":"wrong URL"`);
   }
 };

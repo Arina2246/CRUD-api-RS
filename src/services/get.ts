@@ -1,12 +1,13 @@
+import { ServerResponse } from 'http';
 import { users } from '../db/db.js';
 import { validate as uuidValidate } from 'uuid';
 
-const getUsers = (res) => {
+const getUsers = (res: ServerResponse) => {
   res.statusCode = 200;
   res.end(`${JSON.stringify(users)}`);
 };
 
-const getUser = (res, id) => {
+const getUser = (res: ServerResponse, id: string) => {
   if (uuidValidate(id)) {
     const userToFind = users.filter((user) => user.id === id);
     if (userToFind.length) {
@@ -22,11 +23,14 @@ const getUser = (res, id) => {
   }
 };
 
-export const getMethod = (url, res) => {
+export const getMethod = (url: string, res: ServerResponse) => {
   if (url === '/users/' || url === '/users') {
     getUsers(res);
   } else if (url.slice(0, 7) === '/users/') {
     const id = url.slice(7, url.length);
     getUser(res, id);
+  } else {
+    res.statusCode = 404;
+    res.end(`"message":"wrong URL"`);
   }
 };
