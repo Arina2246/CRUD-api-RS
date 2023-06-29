@@ -5,7 +5,7 @@ import { BodyType } from '../types/types.ts';
 
 export const postMethod = (req: IncomingMessage, res: ServerResponse) => {
   if (req.url === '/users/' || req.url === '/users') {
-    let body = [];
+    let body: Uint8Array[] = [];
     req
       .on('data', (chunk) => {
         body.push(chunk);

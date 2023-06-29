@@ -4,7 +4,7 @@ import { BodyType } from '../types/types.ts';
 import { IncomingMessage, ServerResponse } from 'http';
 
 const updateUser = (req: IncomingMessage, res: ServerResponse, id: string) => {
-  let body = [];
+  let body: Uint8Array[] = [];
   req
     .on('data', (chunk) => {
       body.push(chunk);
