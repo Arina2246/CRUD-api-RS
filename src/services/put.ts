@@ -1,6 +1,6 @@
-import { users } from '../db/db.js';
+import { users } from '../db/db.ts';
 import { validate as uuidValidate } from 'uuid';
-import { BodyType } from '../types/types.js';
+import { BodyType } from '../types/types.ts';
 import { IncomingMessage, ServerResponse } from 'http';
 
 const updateUser = (req: IncomingMessage, res: ServerResponse, id: string) => {

@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { users } from '../db/db.js';
+import { users } from '../db/db.ts';
 import { v4 as uuidv4 } from 'uuid';
-import { BodyType } from '../types/types.js';
+import { BodyType } from '../types/types.ts';
 
 export const postMethod = (req: IncomingMessage, res: ServerResponse) => {
   if (req.url === '/users/' || req.url === '/users') {

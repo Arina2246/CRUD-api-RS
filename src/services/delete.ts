@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { users } from '../db/db.js';
+import { users } from '../db/db.ts';
 import { validate as uuidValidate } from 'uuid';
 
 const deleteUser = (res: ServerResponse, id: string) => {
