@@ -13,8 +13,8 @@ export const deleteMethod = async (
   req: IncomingMessage,
   res: ServerResponse
 ) => {
-  if (req.url.slice(0, 7) === '/users/') {
-    const id = req.url.slice(7, req.url.length);
+  if (req.url.slice(0, 11) === '/api/users/') {
+    const id = req.url.slice(11, req.url.length);
     if (uuidValidate(id)) {
       const userToFind = users.filter((user) => user.id === id);
       if (userToFind.length) {

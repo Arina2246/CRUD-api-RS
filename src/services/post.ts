@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { BodyType } from '../types/types.ts';
 
 export const postMethod = (req: IncomingMessage, res: ServerResponse) => {
-  if (req.url === '/users/' || req.url === '/users') {
+  if (req.url === '/api/users/' || req.url === '/api/users') {
     let body: Uint8Array[] = [];
     req
       .on('data', (chunk) => {

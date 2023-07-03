@@ -24,10 +24,10 @@ const getUser = (res: ServerResponse, id: string) => {
 };
 
 export const getMethod = (url: string, res: ServerResponse) => {
-  if (url === '/users/' || url === '/users') {
+  if (url === '/api/users/' || url === '/api/users') {
     getUsers(res);
-  } else if (url.slice(0, 7) === '/users/') {
-    const id = url.slice(7, url.length);
+  } else if (url.slice(0, 11) === '/api/users/') {
+    const id = url.slice(11, url.length);
     getUser(res, id);
   } else {
     res.statusCode = 404;
