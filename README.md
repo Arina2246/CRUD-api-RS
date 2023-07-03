@@ -4,7 +4,9 @@
 
 #3. swith to branch "DEV"
 
-#4. type in terminal "npm run start:dev"
+#4. run in terminal "npm i"
+
+#4. run in terminal "npm run start:dev"
 
 #5. open Postman and add "http://localhost:3000/" to url input
 
